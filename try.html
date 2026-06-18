@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Winnie the Pooh Invitation</title>
+  <style>
+    /* Reset and basic body styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('bg.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      perspective: 1200px; 
+    }
+
+    /* Adjusted main envelope container for a vertical card */
+    .envelope-wrapper {
+      position: relative;
+      width: 270px;
+      height: 380px;
+      cursor: pointer;
+      transition: transform 0.3s ease; 
+    }
+
+    .envelope-wrapper:hover {
+      transform: translateY(-5px);
+    }
+
+    /* The back inside of the envelope */
+    .envelope-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fceea7; 
+      border-radius: 5px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    /* The invitation card container */
+    .card {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 250px;
+      height: 360px;
+      background-color: #ffffff;
+      border: 2px solid #ffcccb; 
+      border-radius: 8px;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden; /* Ensures the image respects the rounded corners */
+      
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s, 
+                  box-shadow 0.5s ease 0s, 
+                  z-index 0s 0.5s; 
+    }
+
+    /* The actual image inside the card */
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the card area perfectly */
+      display: block;
+    }
+
+    /* The bottom/side pockets of the envelope */
+    .envelope-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fae482; 
+      border-radius: 5px;
+      z-index: 2;
+      clip-path: polygon(0% 100%, 0% 0%, 50% 50%, 100% 0%, 100% 100%);
+    }
+
+    /* The top flap of the envelope */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+      background-color: #f5d44f; 
+      border-radius: 5px 5px 0 0;
+      z-index: 3;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out 0.5s, z-index 0s 0.5s;
+    }
+
+    /* A little "honey" sticker to seal it */
+    .sticker {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      width: 45px;
+      height: 45px;
+      background-color: #ffcccb; 
+      border-radius: 50%;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: opacity 0.3s ease 0.8s, transform 0.3s ease;
+    }
+
+    .envelope-wrapper:hover .sticker {
+      transform: translate(-50%, -40%) scale(1.05);
+    }
+
+    /* --- OPENED STATE ANIMATIONS --- */
+
+    .is-open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 0;
+      transition: transform 0.5s ease-in-out 0s, z-index 0s 0.25s; 
+    }
+
+    .is-open .sticker {
+      opacity: 0;
+      transition: opacity 0.2s ease 0s;
+    }
+
+    .is-open .card {
+      /* Scales to 1.15 so it pops out larger */
+      transform: translateY(-280px) scale(1.15);
+      z-index: 5;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s, 
+                  box-shadow 0.7s ease 0.5s, 
+                  z-index 0s 0.5s; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="envelope-wrapper" id="invite-envelope">
+    <div class="envelope-back"></div>
+    
+    <!-- The card now contains your image instead of text -->
+    <div class="card">
+      <img src="invite.png" alt="Baby Shower Invitation">
+    </div>
+
+    <div class="envelope-front"></div>
+    <div class="envelope-flap"></div>
+    <div class="sticker">Hunny</div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('invite-envelope');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('is-open');
+    });
+  </script>
+
+</body>
+</html>
