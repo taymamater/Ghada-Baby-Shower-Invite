@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smooth Winnie the Pooh Invitation</title>
+  <title>Ghada's Baby Shower</title>
   <style>
-    /* --- NEW: Load your custom font --- */
+    /* --- Load your custom font --- */
     @font-face {
       font-family: 'Hugh Pillow';
       src: url('Hugh Pillow.ttf') format('truetype');
@@ -18,23 +18,25 @@
       padding: 0;
     }
 
-    /* --- UPDATED: Bulletproof Mobile Background Fix --- */
+    /* --- UPDATED: Guaranteed Mobile Background Fix --- */
     body::before {
       content: "";
-      position: fixed; /* Locks it to the screen */
+      position: fixed; 
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      /* Uses Viewport Width/Height to guarantee it spans the whole screen */
+      width: 100vw;
+      height: 100vh;
       background-image: url('bg.jpg'); 
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: -1; /* Keeps it behind the invitation */
+      z-index: -1; 
+      /* Scales the image up by 15% to make it bigger and hide any screen edges */
+      transform: scale(1.15);
     }
 
     body {
-      /* Removed the background properties from here */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -169,19 +171,18 @@
       transform: translate(-50%, -40%) scale(1.05);
     }
 
-    /* --- UPDATED: Directions Button Styling --- */
+    /* --- Directions Button Styling --- */
     .directions-btn {
       background-color: #cce6f4; 
       color: #555;
       text-decoration: none;
       padding: 12px 28px;
       border-radius: 30px; 
-      font-family: 'Hugh Pillow', sans-serif; /* Applies your custom font */
-      font-size: 20px; /* Custom fonts often need to be a bit larger */
+      font-family: 'Hugh Pillow', sans-serif; 
+      font-size: 20px; 
       letter-spacing: 1px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       
-      /* Flexbox perfectly aligns the icon and the text */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -198,7 +199,6 @@
       background-color: #baddf0;
     }
 
-    /* Keeps the SVG icon sized perfectly next to the text */
     .directions-btn svg {
       width: 20px;
       height: 20px;
